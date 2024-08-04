@@ -126,6 +126,7 @@ public class ZookeeperRegistry extends FailbackRegistry {
     @Override
     public void doRegister(URL url) {
         try {
+            // 注册的zookeeper中的实现
             zkClient.create(toUrlPath(url), url.getParameter(DYNAMIC_KEY, true));
         } catch (Throwable e) {
             throw new RpcException("Failed to register " + url + " to zookeeper " + getUrl() + ", cause: " + e.getMessage(), e);
@@ -144,6 +145,7 @@ public class ZookeeperRegistry extends FailbackRegistry {
     @Override
     public void doSubscribe(final URL url, final NotifyListener listener) {
         try {
+            // zookeeper consumer订阅
             if (ANY_VALUE.equals(url.getServiceInterface())) {
                 String root = toRootPath();
                 ConcurrentMap<NotifyListener, ChildListener> listeners = zkListeners.computeIfAbsent(url, k -> new ConcurrentHashMap<>());

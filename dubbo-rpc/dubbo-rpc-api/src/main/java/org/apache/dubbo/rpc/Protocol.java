@@ -26,7 +26,7 @@ import java.util.List;
 /**
  * Protocol. (API/SPI, Singleton, ThreadSafe)
  */
-@SPI("dubbo")
+@SPI("dubbo") // 表示是一个扩展接口
 public interface Protocol {
 
     /**
